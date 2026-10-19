@@ -1,0 +1,10 @@
+# build artifacts / user-specific data (never commit)
+build/
+backup/
+app-asar*/
+reports/
+*.asar
+*.biliapp
+*.bilijsc
+*.png
+*.log
