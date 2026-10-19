@@ -6,8 +6,8 @@ $backup = Join-Path $work "backup"
 
 $orig = Join-Path $backup "cache-asar.orig.asar"
 if (-not (Test-Path $orig)) {
-  $alt = Join-Path $backup "f244245046f9339d.asar.orig"
-  if (Test-Path $alt) { $orig = $alt } else { throw "no backup found in $backup" }
+  $any = Get-ChildItem $backup -Filter *.asar -ErrorAction SilentlyContinue | Select-Object -First 1
+  if ($any) { $orig = $any.FullName } else { throw "no original asar backup found in $backup (install-patch.ps1 creates it)" }
 }
 
 $ver = (Get-Content (Join-Path $res ".version") -Raw).Trim()
